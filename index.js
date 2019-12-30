@@ -157,6 +157,16 @@ const rawPages = [
                 )
         return piece
     }),
+    createSimplePage("Contact Us", "contact-us", piece => {
+        if (
+            piece.constructor.type === "Person" &&
+            ["daniel-passmore", "nancy-osbourne"].includes(piece.config.slug)
+        ) {
+            piece.visibleProps.push("email")
+            console.log(piece.visibleProps)
+        }
+        return piece
+    }),
 
     // team
     createTeamPage("daniel-passmore"),
@@ -193,6 +203,8 @@ function injectSchema(pathname) {
     script.type = "application/ld+json"
     script.innerHTML = JSON.stringify(jsonLd)
     document.head.append(script)
+
+    return script
 }
 
 // Actual injection
