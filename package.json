@@ -1,0 +1,14 @@
+{
+    "name": "schema",
+    "version": "1.0.0",
+    "description": "## Sitemap",
+    "main": "index.js",
+    "scripts": {
+        "dev": "rollup index.js --format cjs --file build/bundle.js -w",
+        "sync": "browser-sync start --server build/ --watch --files build/*",
+        "build-production": "rollup index.js --format iife --file production/bundle.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
