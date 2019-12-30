@@ -98,7 +98,7 @@ const createServicePage = slug => {
         service => service.slug === slug
     )
 
-    return createSimplePage(name, `services/${slug}`, piece => {
+    return createSimplePage(name, `service/${slug}`, piece => {
         if (!["Person", "OfferCatalog"].includes(piece.constructor.type))
             return piece
 
