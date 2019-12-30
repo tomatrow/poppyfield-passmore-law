@@ -465,7 +465,7 @@
     // construct individual pages
     const rawPages = [
         // simple pages
-        createSimplePage("Home", "home"),
+        createSimplePage("", "home"),
         createSimplePage("About Us", "about-us"),
         createSimplePage(
             "Free Legal Consultation",
