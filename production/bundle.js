@@ -312,15 +312,18 @@
             this.config = config || {};
         }
         generate() {
-            const { title, path } = this.config;
-            return Object.combine({
+            const { title, path, description } = this.config;
+            const base = {
                 "@type": "WebPage",
                 "@id": `${Context.rootUrl}/${path}`,
                 inLanguage: "en-US",
                 isPartOf: Utility.idObject("website"),
                 about: Utility.idObject("organization"),
                 name: `${title} | ${Context.name}`
-            })
+            };
+            let desc = {};
+            if (description) desc = { description };
+            return Object.combine(base, desc)
         }
         static get type() {
             return "WebPage"
@@ -418,6 +421,11 @@
                 switch (piece.constructor.type) {
                     case "WebPage":
                         piece.config = { title, path };
+                        const descriptionTag = document.querySelector(
+                            'meta[name="description"]'
+                        );
+                        if (descriptionTag)
+                            piece.config.description = descriptionTag.content || "";
                         break
                 }
                 if (additionalPreTransform) return additionalPreTransform(piece)

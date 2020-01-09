@@ -74,6 +74,11 @@ const createSimplePage = (
             switch (piece.constructor.type) {
                 case "WebPage":
                     piece.config = { title, path }
+                    const descriptionTag = document.querySelector(
+                        'meta[name="description"]'
+                    )
+                    if (descriptionTag)
+                        piece.config.description = descriptionTag.content || ""
                     break
             }
             if (additionalPreTransform) return additionalPreTransform(piece)

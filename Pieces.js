@@ -173,15 +173,18 @@ class WebPage {
         this.config = config || {}
     }
     generate() {
-        const { title, path } = this.config
-        return Object.combine({
+        const { title, path, description } = this.config
+        const base = {
             "@type": "WebPage",
             "@id": `${Context.rootUrl}/${path}`,
             inLanguage: "en-US",
             isPartOf: Utility.idObject("website"),
             about: Utility.idObject("organization"),
             name: `${title} | ${Context.name}`
-        })
+        }
+        let desc = {}
+        if (description) desc = { description }
+        return Object.combine(base, desc)
     }
     static get type() {
         return "WebPage"
